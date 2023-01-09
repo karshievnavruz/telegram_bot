@@ -18,5 +18,16 @@ class Bot:
         # Returning the response
         return response
 
+    def sendMessage(self,chat_id:int,text:str):
+        """
+        Use this method to send text messages. On success, the sent Message is returned.
+        args:
+            chat_id: Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            text: Text of the message to be sent
+        returns:
+            A message object
+        """
+        pass
+    
 
 
