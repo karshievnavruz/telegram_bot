@@ -41,7 +41,7 @@ class Bot:
         response = response.json()
         # Converting the response to a message object
         message = Message(response['result'])
-        return message 
+        return message
 
     def getUpdates(self,offset:int=None):
         """
