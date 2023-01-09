@@ -1,5 +1,6 @@
 # Imports libraries
 import requests
+from .message import Message
 class Bot:
     def __init__(self,token:str):
         self.token = token
@@ -27,7 +28,20 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        # Defining the url to send the message
+        url = f'{self.base_url}sendMessage'
+        # Defining the data to send
+        data = {
+            'chat_id':chat_id,
+            'text':text
+        }
+        # Sending the message
+        response = requests.post(url,data=data)
+        # Converting the response to json
+        response = response.json()
+        # Converting the response to a message object
+        message = Message(response['result'])
+        return message
     
 
 
