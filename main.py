@@ -1,4 +1,4 @@
-from telegram.bot import Bot
+from telegram import Bot
 import os 
 
 # Get the token from the environment variables
@@ -7,3 +7,6 @@ TOKEN = os.environ['TOKEN']
 bot = Bot(TOKEN)
 # Print the bot info
 print(bot.getMe())
+
+# Send a message to the bot
+bot.sendMessage(123456789,"Hello World")
