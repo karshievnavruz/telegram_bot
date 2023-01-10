@@ -1,6 +1,6 @@
 # Imports libraries
 import requests
-from .message import Message
+from telegram.message import Message
 class Bot:
     def __init__(self,token:str):
         self.token = token
@@ -51,8 +51,14 @@ class Bot:
         returns:
             An array of update objects
         """
-        pass
-
+        URL = f'{self.base_url}getUpdates'
+        
+        r = requests.get(url=URL,params={'limit':offset})
+        r = r.json()['result']
+        for msg in r:
+            message = msg['message']
+            print(message.get('text'))
+        pass 
     def sendPhoto(self,chat_id:int,photo:str):
         """
         Use this method to send photos. On success, the sent Message is returned.
@@ -62,7 +68,16 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        URL = f'{self.base_url}sendPhoto'
+
+        data = {
+            'chat_id':chat_id,
+            'photo':photo
+        }
+
+        response = requests.get(url=URL, data=data)
+
+        return response.json()
 
 
     def sendSticker(self,chat_id:int,sticker:str):
@@ -74,7 +89,13 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        url = f'{self.base_url}sendSticker'
+        param = {
+            'chat_id':chat_id,
+            'sticker':sticker
+        }
+        r = requests.get(url=url, params=param)
+        return r.json()
 
     def sendDocument(self,chat_id:int,document:str):
         """
@@ -85,7 +106,15 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        url = f"{self.base_url}sendDocument"
+        param = {
+            'chat_id':chat_id,
+            'document':document
+        }
+
+        response = requests.get(url=url, params=param)
+
+        return response
 
     def sendVideo(self,chat_id:int,video:str):
         """
@@ -96,7 +125,15 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        url = f'{self.base_url}sendVideo'
+        param = {
+            'chat_id': chat_id,
+            'video': video
+        }
+
+        response = requests.get(url=url, params=param)
+
+        return response
 
     def sendLocation(self,chat_id:int,latitude:float,longitude:float):
         """
@@ -108,7 +145,16 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        url = f'{self.base_url}sendLocation'
+        param = {
+            'chat_id':chat_id,
+            'latitude':latitude,
+            'longitude':longitude
+        }
+
+        response = requests.get(url=url, params=param)
+
+        return response
 
     def sendContact(self,chat_id:int,phone_number:str,first_name:str):
         """
@@ -120,7 +166,16 @@ class Bot:
         returns:
             A message object
         """
-        pass
+        url = f'{self.base_url}sendContact'
+        param = {
+            'chat_id':chat_id,
+            'phone_number':phone_number,
+            'first_name':first_name
+        }
+
+        response = requests.get(url=url, params=param)
+
+        return response
 
     
       
